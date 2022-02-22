@@ -1,7 +1,9 @@
 {
   "name": "HTMLPrimordial",
   "version": "1.0.0",
-  "dependencies": {},
+  "dependencies": {
+    "three": "^0.137.5"
+  },
   "devDependencies": {
     "@commitlint/cli": "^16.2.1",
     "@commitlint/config-conventional": "^16.2.1",
@@ -9,7 +11,8 @@
     "husky": "^7.0.0",
     "lint-staged": "^12.3.4",
     "prettier": "2.5.1",
-    "pretty-quick": "^3.1.3"
+    "pretty-quick": "^3.1.3",
+    "parcel": "^2.3.0"
   },
   "eslintConfig": {
     "extends": [
