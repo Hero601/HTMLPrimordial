@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input type="file" name="file" id="file">
+    <button id="btn">upload</button>
+    <!-- <script>
+        btn.addEventListener('click', uploadHandle)
+
+        function uploadHandle() {
+            const selectedFile = file.files[0]
+            console.log(selectedFile)
+        }
+    </script> -->
+
+    <script>
+        btn.addEventListener('click', uploadHandle)
+
+        function uploadHandle() {
+            const blob = new Blob(['123', 'abc', 'def'], {
+                type: 'text/plain'
+            })
+            blob.text().then(res => {
+                console.log(res)
+            })
+            blob.arrayBuffer().then(res => {
+                console.log(res);
+            })
+
+            const res = blob.stream()
+            res.getReader().read().then(res => {
+                console.log(res.value);
+            })
+        }
+    </script>
+</body>
+</html>
