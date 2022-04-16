@@ -1,26 +1,28 @@
 const canvas: HTMLCanvasElement = document.querySelector("#canvas");
 const app: CanvasRenderingContext2D = canvas.getContext("2d");
 
+import imgSrc from "./demo2.jpeg";
+
 window.onload = main;
 
 function main() {
   const fullWidth = canvas.width,
     fullHeight = canvas.height;
 
-  drawTriangle(app);
+  const imgEl = document.createElement("img");
+  imgEl.src = imgSrc;
+
+  imgEl.onload = () => {
+    const num = scale(imgEl, canvas);
+
+    canvas.width = imgEl.naturalWidth * num;
+    canvas.height = imgEl.naturalHeight * num;
+
+    app.drawImage(imgEl, 0, 0, fullWidth, fullHeight);
+  };
 }
 
-function drawTriangle(ctx: CanvasRenderingContext2D) {
-  ctx.beginPath(); // 开始绘制
-
-  // 样式
-  ctx.strokeStyle = "red";
-
-  ctx.moveTo(20, 20); // 开始绘制的坐标，第一个点
-  ctx.lineTo(50, 50); // 第二个点，自动连接第一个点
-  ctx.lineTo(100, 40); // 第三个点，自动连接第二个点
-  ctx.closePath(); // 闭合 第三个点和第一个点
-
-  // 绘制
-  ctx.stroke();
+// 根据 canvas 和 图片 大小计算应该缩放的值
+function scale(img: HTMLImageElement, el: HTMLCanvasElement): number {
+  return Math.min(el.width / img.naturalWidth, el.height / img.naturalHeight);
 }
